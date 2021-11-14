@@ -7,10 +7,15 @@ from telebot import types
 from datetime import date, timedelta
 
 
-token = 'token'
-
+token = '2146536465:AAFYI6XOYxHSBXhrCFXxoxtoM81sF_XAN-o'
 
 bot = telebot.TeleBot(token)
+
+
+days0 = 0
+days1 = 1
+days2 = 2
+days3 = 3
 
 
 @bot.message_handler(commands=['start'])
@@ -35,20 +40,22 @@ def next(message):
 
         city = message.text
 
-        days = 0
+        def parser(city, days):
 
-        day = date.today()
-        day = day + timedelta(days)
+            day = date.today()
+            day = day + timedelta(days)
 
-        url1 = f'https://ua.sinoptik.ua/погода-{city}/{day}'
+            url1 = f'https://ua.sinoptik.ua/погода-{city}/{day}'
 
-        r = requests.get(url1)
+            r = requests.get(url1)
 
-        html = BS(r.content, 'html.parser')
+            html = BS(r.content, 'html.parser')
+
+            return html
 
         all = []
 
-        all = html.find_all('td', class_='p5')
+        all = parser(city, days0).find_all('td', class_='p5')
 
         if all == []:
             bot.send_message(
@@ -109,22 +116,9 @@ def next(message):
 
                     city = message.text
 
-                    days = 1
-
-                    day = date.today()
-                    day = day + timedelta(days)
-
-                    print(day)
-
-                    url1 = f'https://ua.sinoptik.ua/погода-{city}/{day}'
-
-                    r = requests.get(url1)
-
-                    html = BS(r.content, 'html.parser')
-
                     all = []
 
-                    all = html.find_all('td', class_='p5')
+                    all = parser(city, days1).find_all('td', class_='p5')
 
                     temp = (all[2].text)
                     feelLike = (all[3].text)
@@ -173,22 +167,9 @@ def next(message):
 
                     city = message.text
 
-                    days = 2
-
-                    day = date.today()
-                    day = day + timedelta(days)
-
-                    print(day)
-
-                    url1 = f'https://ua.sinoptik.ua/погода-{city}/{day}'
-
-                    r = requests.get(url1)
-
-                    html = BS(r.content, 'html.parser')
-
                     all = []
 
-                    all = html.find_all('td', class_='p3')
+                    all = parser(city, days2).find_all('td', class_='p3')
 
                     temp = (all[2].text)
                     feelLike = (all[3].text)
@@ -238,22 +219,9 @@ def next(message):
 
                     city = message.text
 
-                    days = 3
-
-                    day = date.today()
-                    day = day + timedelta(days)
-
-                    print(day)
-
-                    url1 = f'https://ua.sinoptik.ua/погода-{city}/{day}'
-
-                    r = requests.get(url1)
-
-                    html = BS(r.content, 'html.parser')
-
                     all = []
 
-                    all = html.find_all('td', class_='p3')
+                    all = parser(city, days3).find_all('td', class_='p3')
 
                     temp = (all[2].text)
                     feelLike = (all[3].text)
