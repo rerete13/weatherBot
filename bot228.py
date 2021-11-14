@@ -76,34 +76,42 @@ def next(message):
 
         rainInfo = float(rainInfo)
 
-        if rainInfo == '-':
-            rainInfoEnd = 'не передбачуються'
-
-        if rainInfo == 0:
-            rainInfoEnd = 'не передбачуються'
-
-        if rainInfo <= 20:
-            rainInfoEnd = 'не передбачуються'
-
-        if rainInfo >= 30:
-            rainInfoEnd = 'Можливі опади'
-
-        elif rainInfo >= 50:
-            rainInfoEnd = 'Присутні опади'
-
         windInfo = wind
 
-        if windInfo <= 8:
-            windInfoEnd = 'слабкий'
+        def ifRain(rainInfo):
 
-        if windInfo >= 8:
-            windInfoEnd = 'середній'
+            if rainInfo == '-':
+                rainInfoEnd = 'не передбачуються'
 
-        elif windInfo >= 15:
-            windInfoEnd = 'сильний'
+            if rainInfo == 0:
+                rainInfoEnd = 'не передбачуються'
+
+            if rainInfo <= 20:
+                rainInfoEnd = 'не передбачуються'
+
+            if rainInfo >= 30:
+                rainInfoEnd = 'Можливі опади'
+
+            elif rainInfo >= 50:
+                rainInfoEnd = 'Присутні опади'
+
+            return rainInfoEnd
+
+        def ifWind(windInfo):
+
+            if windInfo <= 8:
+                windInfoEnd = 'слабкий'
+
+            if windInfo >= 8:
+                windInfoEnd = 'середній'
+
+            elif windInfo >= 15:
+                windInfoEnd = 'сильний'
+
+            return windInfoEnd
 
         bot.send_message(
-            message.chat.id, f'Погода сьогодні:\nТемпература: {temp} \nВідчувається як: {feelLike} \nВітер: {windInfoEnd}\nОпади: {rainInfoEnd}', reply_markup=markup)
+            message.chat.id, f'Погода сьогодні:\nТемпература: {temp} \nВідчувається як: {feelLike} \nВітер: {ifWind(windInfo)}\nОпади: {ifRain(rainInfo)}', reply_markup=markup)
 
     @bot.callback_query_handler(func=lambda call: True)
     def callback(call):
@@ -129,34 +137,10 @@ def next(message):
 
                     rainInfo = float(rainInfo)
 
-                    if rainInfo == '-':
-                        rainInfoEnd = 'не передбачуються'
-
-                    if rainInfo == 0:
-                        rainInfoEnd = 'не передбачуються'
-
-                    if rainInfo <= 20:
-                        rainInfoEnd = 'не передбачуються'
-
-                    if rainInfo >= 30:
-                        rainInfoEnd = 'Можливі опади'
-
-                    elif rainInfo >= 50:
-                        rainInfoEnd = 'Присутні опади'
-
                     windInfo = wind
 
-                    if windInfo <= 8:
-                        windInfoEnd = 'слабкий'
-
-                    if windInfo >= 8:
-                        windInfoEnd = 'середній'
-
-                    elif windInfo >= 15:
-                        windInfoEnd = 'сильний'
-
                     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.id,
-                                          text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {windInfoEnd}\nОпади: {rainInfoEnd}')
+                                          text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {ifWind(windInfo)}\nОпади: {ifRain(rainInfo)}')
                 return
 
         if call.message:
@@ -180,34 +164,10 @@ def next(message):
 
                     rainInfo = float(rainInfo)
 
-                    if rainInfo == '-':
-                        rainInfoEnd = 'не передбачуються'
-
-                    if rainInfo == 0:
-                        rainInfoEnd = 'не передбачуються'
-
-                    if rainInfo <= 20:
-                        rainInfoEnd = 'не передбачуються'
-
-                    if rainInfo >= 30:
-                        rainInfoEnd = 'Можливі опади'
-
-                    elif rainInfo >= 50:
-                        rainInfoEnd = 'Присутні опади'
-
                     windInfo = wind
 
-                    if windInfo <= 8:
-                        windInfoEnd = 'слабкий'
-
-                    if windInfo >= 8:
-                        windInfoEnd = 'середній'
-
-                    elif windInfo >= 15:
-                        windInfoEnd = 'сильний'
-
                     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.id,
-                                          text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {windInfoEnd}\nОпади: {rainInfoEnd}')
+                                          text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {ifWind(windInfo)}\nОпади: {ifRain(rainInfo)}')
 
                 return
 
@@ -232,34 +192,10 @@ def next(message):
 
                     rainInfo = float(rainInfo)
 
-                    if rainInfo == '-':
-                        rainInfoEnd = 'не передбачуються'
-
-                    if rainInfo == 0:
-                        rainInfoEnd = 'не передбачуються'
-
-                    if rainInfo <= 20:
-                        rainInfoEnd = 'не передбачуються'
-
-                    if rainInfo >= 30:
-                        rainInfoEnd = 'Можливі опади'
-
-                    elif rainInfo >= 50:
-                        rainInfoEnd = 'Присутні опади'
-
                     windInfo = wind
 
-                    if windInfo <= 8:
-                        windInfoEnd = 'слабкий'
-
-                    if windInfo >= 8:
-                        windInfoEnd = 'середній'
-
-                    elif windInfo >= 15:
-                        windInfoEnd = 'сильний'
-
                     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.id,
-                                          text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {windInfoEnd}\nОпади: {rainInfoEnd}')
+                                          text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {ifWind(windInfo)}\nОпади: {ifRain(rainInfo)}')
 
                 return
 
