@@ -57,14 +57,15 @@ def next(message):
 
         all = parser(city, days0).find_all('td', class_='p5')
 
-        if all == []:
+        try:
+            temp = (all[2].text)
+            feelLike = (all[3].text)
+            wind = float(all[6].text)
+            rain = all[7].text
+
+        except IndexError:
             bot.send_message(
                 message.chat.id, 'Ви ввели назву міста не українською мовою, або назву неіснуючого міста')
-
-        temp = (all[2].text)
-        feelLike = (all[3].text)
-        wind = float(all[6].text)
-        rain = all[7].text
 
         rep = ['-']
 
@@ -198,6 +199,5 @@ def next(message):
                                           text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {ifWind(windInfo)}\nОпади: {ifRain(rainInfo)}')
 
                 return
-
 
 bot.infinity_polling()
