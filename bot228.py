@@ -7,8 +7,7 @@ from telebot import types
 from datetime import date, timedelta
 
 
-token = 'token'
-
+token = '2146536465:AAFYI6XOYxHSBXhrCFXxoxtoM81sF_XAN-o'
 bot = telebot.TeleBot(token)
 
 
@@ -66,6 +65,8 @@ def next(message):
         except IndexError:
             bot.send_message(
                 message.chat.id, 'Ви ввели назву міста не українською мовою, або назву неіснуючого міста')
+
+            return
 
         rep = ['-']
 
@@ -135,9 +136,7 @@ def next(message):
                     rain = all[7].text
 
                     rainInfo = rain
-
                     rainInfo = float(rainInfo)
-
                     windInfo = wind
 
                     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.id,
@@ -162,9 +161,7 @@ def next(message):
                     rain = all[7].text
 
                     rainInfo = rain
-
                     rainInfo = float(rainInfo)
-
                     windInfo = wind
 
                     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.id,
@@ -199,5 +196,6 @@ def next(message):
                                           text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {ifWind(windInfo)}\nОпади: {ifRain(rainInfo)}')
 
                 return
+
 
 bot.infinity_polling()
