@@ -181,7 +181,7 @@ def next(message):
 
                     all = []
 
-                    all = parser(city, days3).find_all('td', class_='p3')
+                    all = parser(city, days2).find_all('td', class_='p3')
 
                     temp = (all[2].text)
                     feelLike = (all[3].text)
