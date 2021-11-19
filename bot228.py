@@ -7,7 +7,7 @@ from telebot import types
 from datetime import date, timedelta
 
 
-token = '2146536465:AAFYI6XOYxHSBXhrCFXxoxtoM81sF_XAN-o'
+token = 'token'
 bot = telebot.TeleBot(token)
 
 
