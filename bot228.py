@@ -7,7 +7,7 @@ from telebot import types
 from datetime import date, timedelta
 
 
-token = 'token'
+token = '2146536465:AAFYI6XOYxHSBXhrCFXxoxtoM81sF_XAN-o'
 bot = telebot.TeleBot(token)
 
 
@@ -48,7 +48,7 @@ def next(message):
 
             r = requests.get(url1)
 
-            html = BS(r.content, 'html.parser')
+            html = BS(r.content, 'lxml')
 
             return html
 
