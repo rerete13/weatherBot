@@ -1,11 +1,8 @@
-from types import resolve_bases
 from bs4 import BeautifulSoup as BS
 import requests
 import telebot
-from telebot.types import Message, Update
-from telebot import types
 from datetime import date, timedelta
-
+from telebot import types
 
 token = 'token'
 bot = telebot.TeleBot(token)
@@ -80,34 +77,34 @@ def next(message):
 
         windInfo = wind
 
-        def ifRain(rainInfo):
+        def ifRain(rainInfoX):
 
-            if rainInfo == '-':
+            if rainInfoX == '-':
                 rainInfoEnd = 'не передбачуються'
 
-            if rainInfo == 0:
+            if rainInfoX == 0:
                 rainInfoEnd = 'не передбачуються'
 
-            if rainInfo <= 20:
+            if rainInfoX <= 20:
                 rainInfoEnd = 'не передбачуються'
 
-            if rainInfo >= 30:
+            if rainInfoX >= 30:
                 rainInfoEnd = 'Можливі опади'
 
-            elif rainInfo >= 50:
+            elif rainInfoX >= 50:
                 rainInfoEnd = 'Присутні опади'
 
             return rainInfoEnd
 
-        def ifWind(windInfo):
+        def ifWind(windInfoX):
 
-            if windInfo <= 8:
+            if windInfoX <= 8:
                 windInfoEnd = 'слабкий'
 
-            if windInfo >= 8:
+            if windInfoX >= 8:
                 windInfoEnd = 'середній'
 
-            elif windInfo >= 15:
+            elif windInfoX >= 15:
                 windInfoEnd = 'сильний'
 
             return windInfoEnd
@@ -153,7 +150,7 @@ def next(message):
 
                     all = []
 
-                    all = parser(city, days2).find_all('td', class_='p3')
+                    all = parser(city, days1).find_all('td', class_='p3')
 
                     temp = (all[2].text)
                     feelLike = (all[3].text)
@@ -166,7 +163,6 @@ def next(message):
 
                     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.id,
                                           text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {ifWind(windInfo)}\nОпади: {ifRain(rainInfo)}')
-
                 return
 
         if call.message:
@@ -179,7 +175,7 @@ def next(message):
 
                     all = []
 
-                    all = parser(city, days2).find_all('td', class_='p3')
+                    all = parser(city, days1).find_all('td', class_='p3')
 
                     temp = (all[2].text)
                     feelLike = (all[3].text)
@@ -187,14 +183,11 @@ def next(message):
                     rain = all[7].text
 
                     rainInfo = rain
-
                     rainInfo = float(rainInfo)
-
                     windInfo = wind
 
                     bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.id,
                                           text=f'Температура: {temp} \nВідчувається як: {feelLike} \nВітер: {ifWind(windInfo)}\nОпади: {ifRain(rainInfo)}')
-
                 return
 
 
