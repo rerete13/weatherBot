@@ -80,13 +80,13 @@ def next(message):
         def ifRain(rainInfoX):
 
             if rainInfoX == '-':
-                rainInfoEnd = 'не передбачуються'
+                rainInfoEnd = 'Не передбачуються'
 
             if rainInfoX == 0:
-                rainInfoEnd = 'не передбачуються'
+                rainInfoEnd = 'Не передбачуються'
 
             if rainInfoX <= 20:
-                rainInfoEnd = 'не передбачуються'
+                rainInfoEnd = 'Не передбачуються'
 
             if rainInfoX >= 30:
                 rainInfoEnd = 'Можливі опади'
@@ -99,13 +99,13 @@ def next(message):
         def ifWind(windInfoX):
 
             if windInfoX <= 8:
-                windInfoEnd = 'слабкий'
+                windInfoEnd = 'Слабкий'
 
             if windInfoX >= 8:
-                windInfoEnd = 'помірний'
+                windInfoEnd = 'Помірний'
 
             elif windInfoX >= 15:
-                windInfoEnd = 'сильний'
+                windInfoEnd = 'Сильний'
 
             return windInfoEnd
 
