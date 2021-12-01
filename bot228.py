@@ -102,7 +102,7 @@ def next(message):
                 windInfoEnd = 'слабкий'
 
             if windInfoX >= 8:
-                windInfoEnd = 'середній'
+                windInfoEnd = 'помірний'
 
             elif windInfoX >= 15:
                 windInfoEnd = 'сильний'
